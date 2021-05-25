@@ -3,14 +3,11 @@
 //npm install -- save-dev nodemon
 //em seguida foi adiciona no package.json o script  "start": "nodemon index.js" inicializando o nodemon com o comando "npm start"
 
-//chamando módulo no express!
-const express = require('express')
-const app = express()
+
+//exportando módulo
+const customExpress = require('./config/customExpress.js')
+const app = customExpress()
+
 
 //subindo servidor (Porta, função)
 app.listen(3000, () => console.log("servidor rodando na porta 3000"))
-
-//fazendo requisição (GET) -- (rota, função)
-//req -> requisição (o que as pessoas enviaram)
-//res -> o que o servidor está devolvendo 
-app.get('/atendimentos', (req, res) => res.send('Você está na rota de atendimentos!'))
