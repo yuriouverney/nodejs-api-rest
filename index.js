@@ -6,8 +6,20 @@
 
 //exportando módulo
 const customExpress = require('./config/customExpress.js')
-const app = customExpress()
+const conexao = require('./infraestrutura/conexao.js')
+const Tabelas = require('./infraestrutura/tabelas.js')
+conexao.connect(erro => {
+    if (erro){
+        console.log(erro)
+    }else{
+        //é importante conectar o banco de dados antes de subir a aplicaçã
+        console.log('Conectado com sucesso!')
+        Tabelas.init(conexao)
+        
+        const app = customExpress()
+        //subindo servidor (Porta, função)
+        app.listen(3000, () => console.log("servidor rodando na porta 3000"))
+    }
+})
 
 
-//subindo servidor (Porta, função)
-app.listen(3000, () => console.log("servidor rodando na porta 3000"))
