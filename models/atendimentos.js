@@ -28,7 +28,7 @@ class Atendimento {
         if(existemErros) {
             res.status(400).json(erros)
         } else {
-            const atendimentoDatado = {...atendimento, dataCriacao, data}
+            const atendimentoDatado = {...atendimento, dataCriacao, Data}
 
             const sql = 'INSERT INTO Atendimentos SET ?'
     
@@ -44,6 +44,8 @@ class Atendimento {
        
     }
 
+
+    //Fazendo lista de atendimentos aparecer quando se da um GET
     lista(res) {
         const sql = 'SELECT * FROM Atendimentos'
 
@@ -70,8 +72,8 @@ class Atendimento {
     }
 
     altera(id, valores, res) {
-        if(valores.data) {
-            valores.Data = moment(valores.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+        if(valores.Data) {
+            valores.Data = moment(valores.Data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
         }      
         const sql = 'UPDATE Atendimentos SET ? WHERE id=?'
 
